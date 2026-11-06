@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ping-a"
+description = "Ping con alarma sonora personalizada (WAV/MP3) para Linux"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = ["ping", "icmp", "alarma", "audio", "cli"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: System :: Networking :: Monitoring",
+    "Topic :: Multimedia :: Sound/Audio",
+]
+dependencies = []
+dynamic = ["version"]
+
+[project.optional-dependencies]
+audio = ["pygame>=2.5"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+ping-a = "ping_a.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "ping_a.__version__" }
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
